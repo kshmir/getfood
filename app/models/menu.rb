@@ -6,4 +6,7 @@ class Menu < ActiveRecord::Base
   attr_accessible :price, :description
 
   belongs_to :delivery
+  
+  validates :price, presence: true
+  validates :description, presence: true
 end

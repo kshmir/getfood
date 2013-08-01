@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801161408) do
+ActiveRecord::Schema.define(:version => 20130801200134) do
 
   create_table "companies", :force => true do |t|
     t.string "name"
@@ -26,9 +26,20 @@ ActiveRecord::Schema.define(:version => 20130801161408) do
   create_table "delivery_calls", :force => true do |t|
     t.datetime "delivery_time"
     t.integer  "delivery_id"
+    t.integer  "calling_user_id"
+    t.string   "status",          :default => "started"
   end
 
+  add_index "delivery_calls", ["calling_user_id"], :name => "index_delivery_calls_on_calling_user_id"
   add_index "delivery_calls", ["delivery_id"], :name => "index_delivery_calls_on_delivery_id"
+
+  create_table "delivery_requests", :force => true do |t|
+    t.integer "user_id"
+    t.integer "delivery_call_id"
+  end
+
+  add_index "delivery_requests", ["delivery_call_id"], :name => "index_delivery_requests_on_delivery_call_id"
+  add_index "delivery_requests", ["user_id"], :name => "index_delivery_requests_on_user_id"
 
   create_table "menus", :force => true do |t|
     t.float   "price"

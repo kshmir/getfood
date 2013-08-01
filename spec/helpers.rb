@@ -16,4 +16,13 @@ module Helpers
 	def create_example_user!
 		User.create!(:email => 'user@example.com', :password => 'testpass1')
 	end
+
+	def create_example_delivery!
+		delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+		5.times do |i|
+			delivery.menus << Menu.create(description: "Comida #{i}", price: (i * i))
+		end
+		delivery.save
+		delivery
+	end
 end

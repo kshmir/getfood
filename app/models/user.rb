@@ -23,5 +23,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :company
   has_many :delivery_requests
-  has_many :delivery_calls
+  has_many :delivery_calls, through: :delivery_requests
 end

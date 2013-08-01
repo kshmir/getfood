@@ -31,7 +31,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
-   # allows capybara JS tests to run in separate thread 
+  # allows capybara JS tests to run in separate thread 
   class ActiveRecord::Base
     mattr_accessor :shared_connection
     @@shared_connection = nil
@@ -43,7 +43,7 @@ Spork.each_run do
 
   # Forces all threads to share the same connection. This works on
   # Capybara because it starts the web server in a thread.
-  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+  # ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
   # This code will be run each time you run your specs.
   load "#{Rails.root}/config/routes.rb" 

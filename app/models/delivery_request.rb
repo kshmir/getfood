@@ -4,5 +4,5 @@ class DeliveryRequest < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :delivery_call
 
-	attr_accessible :menus, :user
+	attr_accessible :menus, :user, :delivery_call
 end

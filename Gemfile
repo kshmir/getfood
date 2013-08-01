@@ -69,7 +69,8 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'spork', '~> 1.0rc'
   gem 'guard-spork'
-  gem 'terminal-notifier-guard'
+  gem 'terminal-notifier-guard' 
+  gem 'libnotify'
 end
 
 # Gems used only for assets and not required

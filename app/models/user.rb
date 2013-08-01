@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   fields do
     email :string,              :null => false, :default => ""
     encrypted_password :string, :null => false, :default => ""
@@ -15,7 +14,6 @@ class User < ActiveRecord::Base
     current_sign_in_ip :string  
     last_sign_in_ip :string  
   end
-
   attr_accessible :email, :password, :remember_me
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

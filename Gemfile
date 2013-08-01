@@ -64,11 +64,11 @@ group :development, :test do
 
   # Testing automatization
   gem 'guard'
-	# gem 'rspec-rails'
-  # gem 'guard-rspec'
+	gem 'rspec-rails'
+  gem 'guard-rspec'
   gem 'guard-livereload'
-  # gem 'spork', '~> 1.0rc'
-  # gem 'guard-spork'
+  gem 'spork', '~> 1.0rc'
+  gem 'guard-spork'
   gem 'terminal-notifier-guard'
 end
 

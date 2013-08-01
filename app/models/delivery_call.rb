@@ -9,6 +9,4 @@ class DeliveryCall < ActiveRecord::Base
   has_many :delivery_requests
   has_many :users, through: :delivery_requests
   has_one :calling_user, class_name: "User"
-
-
 end

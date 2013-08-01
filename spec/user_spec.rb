@@ -17,7 +17,7 @@ describe User do
 	end
 
 	it "Should fail due to invalid email" do
-		user = User.new(email:"fran", password:"12345")
+		user = User.new(email:"fran", password:"12345678")
 		user.valid?.should == false 
 	end
 end

@@ -25,7 +25,7 @@ guard 'livereload' do
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
 end
 
-if `uname`.matches "Darwin"
+if `uname`.match "Darwin"
   guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
     watch('config/application.rb')
     watch('config/environment.rb')

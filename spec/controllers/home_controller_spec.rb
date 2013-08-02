@@ -24,7 +24,6 @@ describe HomeController do
 			menu.save
 		end
 		sign_in_example_user!
-		binding.pry
-		all(".delivery-call").count.should == DelveryCall.today_calls.count
+		all(".delivery-call").count.should == DeliveryCall.today_calls.count
 	end
 end

@@ -3,6 +3,8 @@ Getfood::Application.routes.draw do
 
   root :to => "home#index"
 
+  resources :delivery
+
   resources :delivery_calls
 
   # The priority is based upon order of creation:

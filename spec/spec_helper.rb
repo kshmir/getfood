@@ -28,11 +28,6 @@ Spork.prefork do
     config.use_transactional_fixtures = true  
     config.include Helpers
   end  
-end
-
-
-
-Spork.each_run do
 
   class ActiveRecord::Base
     mattr_accessor :shared_connection
@@ -46,6 +41,24 @@ Spork.each_run do
   # Forces all threads to share the same connection. This works on
   # Capybara because it starts the web server in a thread.
   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+end
+
+
+
+Spork.each_run do
+  class ActiveRecord::Base
+    mattr_accessor :shared_connection
+    @@shared_connection = nil
+
+    def self.connection
+      @@shared_connection || retrieve_connection
+    end
+  end
+
+  # Forces all threads to share the same connection. This works on
+  # Capybara because it starts the web server in a thread.
+  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
   # This code will be run each time you run your specs.
   load "#{Rails.root}/config/routes.rb" 
   FactoryGirl.reload

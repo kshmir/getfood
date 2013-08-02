@@ -1,5 +1,5 @@
 class DeliveryController < ApplicationController
-	before_filter :find_delivery, except [:index, :new, :create]
+	before_filter :find_delivery, except: [:index, :new, :create]
 
 	def index
 		@deliverys = Delivery.all

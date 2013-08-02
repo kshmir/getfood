@@ -27,5 +27,7 @@ describe Company do
 		company.users << user
 		company.save!
 		User.count.should == 1
+		company.destroy
+		User.count.should == 0
 	end
 end

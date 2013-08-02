@@ -5,6 +5,6 @@ class Company < ActiveRecord::Base
   end
 
   attr_accessible :name
-  has_many :users
+  has_many :users, dependent: :destroy
   validates :name, uniqueness: true, presence: true
 end

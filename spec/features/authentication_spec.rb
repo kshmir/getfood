@@ -17,7 +17,6 @@ describe "Authentication" do
 		page.body.should_not be_empty
 	end	
 
-
 	it "should not allow an invalid sign up" do
 		visit root_path
 		within("#new_user") do

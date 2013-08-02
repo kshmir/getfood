@@ -8,6 +8,7 @@ class Delivery < ActiveRecord::Base
   attr_accessible :name, :phone, :type
 
   has_many :menus, dependent: :destroy
+  has_many :delivery_calls
 
   validates :name, presence: true, uniqueness: true
   validates :phone, presence: true

@@ -1,17 +1,16 @@
 require 'spec_helper'
 
-
 describe Delivery do
 	it "Should not allow to create an empty delivery" do
 		expect { Delivery.create! }.to raise_error
 	end
 
-	it "Should not allow to create deliveries with same name" do
-		delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
-		delivery.save.should == true
-		delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
-		delivery.save.should == false
-	end
+  it "Should not allow to create deliveries with same name" do
+    delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+    delivery.save.should == true
+    delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+    delivery.save.should == false
+  end
 
 	it "Should have menues" do
 		delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"

@@ -16,7 +16,10 @@ class DeliveryCallsController < ApplicationController
 	end
 
 	def create
-		@delivery_call = User.new(params[:delivery_call])
+		form_params = parse_form_params(params[:delivery_call])
+		@delivery_call = DeliveryCall.new(form_params["delivery_call"])
+		request = DeliveryRequest.new(user: current_user, menus: [form_params["menu"]])
+		@delivery_call.delivery_requests << request
 		if @delivery_call.save
 			flash[:success] = "DeliveryCall successfully created"
 			redirect_to @delivery_call
@@ -51,4 +54,17 @@ class DeliveryCallsController < ApplicationController
 	def find_delivery_call
 		@delivery_call = DeliveryCall.find(params[:id])
 	end
+
+	def parse_form_params params
+		hours = params["delivery_time"].split(":").first
+		minutes = params["delivery_time"].split(":").last
+		delivery_time = DateTime.now.change({:hour => hours.to_i , :min => minutes.to_i , :sec => 0 })
+		form_params = {}
+		form_params["delivery_call"] = {"delivery_time" => delivery_time}
+		menu = Menu.find(params["delivery_id"].to_i)
+		form_params["menu"] = menu
+		form_params["delivery_call"]["delivery_id"] = menu.delivery_id
+		form_params
+	end
+
 end

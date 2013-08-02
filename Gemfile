@@ -66,7 +66,7 @@ group :development, :test do
   # Testing automatization
   gem 'guard'
 	gem 'rspec-rails'
-  gem 'guard-rspec', '3.0.0'
+  gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'spork', '~> 1.0rc'
   gem 'guard-spork'

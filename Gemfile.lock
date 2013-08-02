@@ -316,7 +316,7 @@ DEPENDENCIES
   formtastic-bootstrap
   guard
   guard-livereload
-  guard-rspec (= 3.0.0)
+  guard-rspec
   guard-spork
   hobo_fields
   jquery-rails

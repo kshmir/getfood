@@ -13,12 +13,25 @@ module Helpers
 		sign_in_with 'user@example.com', 'testpass1'
 	end
 
-	def create_example_user_with_some_company!
+	def create_company_with_user company_name, user_name
+		company = Company.new(name: company_name)
+		user = User.create!(:email => "#{user_name}@example.com", :password => 'testpass1')		
+		company.users << user
+		company.save!
+		company
+	end
+
+	def create_example_user_with_company!
 		company = Company.new(name:"Company")
-		user = User.new(email:"fran@alu.itba.edu.ar", password:"12345678")
+		user = User.create!(:email => 'company_user@example.com', :password => 'testpass1')		
 		company.users << user
 		company.save!
 		user
+	end
+
+	def create_users_with_different_companies!
+		create_company_with_user "Company", "company_user1"
+		create_company_with_user "Company2", "company_user2"
 	end
 
 	def create_example_user!

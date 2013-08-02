@@ -1,9 +1,9 @@
 <%= semantic_form_for @delivery_call do |f| %>
   <%= f.inputs do %>
-    <%= f.input :delivery_time, as: :time_select %>
-    <%= f.input :status %>
-    <%= f.input :delivery %>
-    <%= f.input :calling_user %>
+    <%= f.input :delivery_time, as: :select, collection:@times  %>
+<!--     <%= f.input :status %> -->
+    <%= f.input :delivery, as: :select, collection:@menus %>
+    <!-- <%= f.input :calling_user %> -->
   <% end %>
 
   <%= f.actions do %>

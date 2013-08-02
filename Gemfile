@@ -51,7 +51,7 @@ group :development, :test do
 	# Testing utils
   gem 'factory_girl_rails'
   gem 'capybara', '2.0.2'
-  gem 'rspec'
+  gem 'rspec', '2.14.0'
   gem 'database_cleaner'
 
   # Debugging utils
@@ -66,7 +66,7 @@ group :development, :test do
   # Testing automatization
   gem 'guard'
 	gem 'rspec-rails'
-  gem 'guard-rspec'
+  gem 'guard-rspec', '3.0.0'
   gem 'guard-livereload'
   gem 'spork', '~> 1.0rc'
   gem 'guard-spork'

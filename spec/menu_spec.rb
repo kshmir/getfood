@@ -8,6 +8,8 @@ describe Menu do
 
 	it "Should allow to create a menu with price and description" do
 		menu = Menu.create price: 1.0, description: "lalala"
+	    delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
+	    delivery.menus << menu
 		menu.save.should == true
 	end
 end

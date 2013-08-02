@@ -32,14 +32,14 @@ end
 
 Spork.each_run do
   # allows capybara JS tests to run in separate thread 
-  class ActiveRecord::Base
-    mattr_accessor :shared_connection
-    @@shared_connection = nil
+  # class ActiveRecord::Base
+  #   mattr_accessor :shared_connection
+  #   @@shared_connection = nil
 
-    def self.connection
-      @@shared_connection || retrieve_connection
-    end
-  end
+  #   def self.connection
+  #     @@shared_connection || retrieve_connection
+  #   end
+  # end
 
   # Forces all threads to share the same connection. This works on
   # Capybara because it starts the web server in a thread.

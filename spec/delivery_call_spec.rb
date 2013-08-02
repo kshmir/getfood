@@ -29,4 +29,21 @@ describe DeliveryCall do
 		menu.delivery_requests << DeliveryRequest.new(user: u2, menus: delivery.menus)
 		menu.save.should_not == true
 	end
+
+	it "Should list today calls and not other days" do
+		create_example_user!  
+		@user = User.first
+		delivery = create_example_delivery!
+		5.times do 
+			menu = DeliveryCall.new delivery_time: DateTime.now, calling_user: @user
+			menu.delivery_requests << DeliveryRequest.new(user: @user, menus: delivery.menus)
+			menu.save
+		end
+		1.times do 
+			menu = DeliveryCall.new delivery_time: (DateTime.now + 1.day), calling_user: @user
+			menu.delivery_requests << DeliveryRequest.new(user: @user, menus: delivery.menus)
+			menu.save
+		end
+		DeliveryCall.today_calls.count.should == 5
+	end
 end

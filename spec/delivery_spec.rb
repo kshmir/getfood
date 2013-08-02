@@ -6,14 +6,14 @@ describe Delivery do
 	end
 
   it "Should not allow to create deliveries with same name" do
-    delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+    delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
     delivery.save.should == true
-    delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+    delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
     delivery.save.should == false
   end
 
 	it "Should have menues" do
-		delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+		delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
 		5.times do |i|
 			delivery.menus << Menu.create(description: "Comida #{i}", price: (i * i))
 		end
@@ -21,7 +21,7 @@ describe Delivery do
 	end
 
 	it "Should destroy all menues after deletion" do
-		delivery = Delivery.create name: "La farolita", phone: "123456789", type: "Rotiseria"
+		delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
 		5.times do |i|
 			delivery.menus << Menu.create(description: "Comida #{i}", price: (i * i))
 		end

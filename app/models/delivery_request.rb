@@ -1,8 +1,8 @@
 class DeliveryRequest < ActiveRecord::Base
 	fields do end
-	has_many :menus
+	has_and_belongs_to_many :menus
 	belongs_to :user
 	belongs_to :delivery_call
 
-	attr_accessible :menus, :user, :delivery_call
+	attr_accessible :menus, :user
 end

@@ -17,6 +17,10 @@ class DeliveryCall < ActiveRecord::Base
 
   validate :all_users_have_same_company
 
+  scope :today_calls, lambda {
+    where("delivery_time >= ? AND delivery_time < ?", Date.today, Date.tomorrow)
+  }
+
   def all_users_have_same_company
     users = delivery_requests.map(&:user)
     users << calling_user unless calling_user.nil?

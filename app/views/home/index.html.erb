@@ -1,3 +1,17 @@
-<%= render partial: "today_calls", locals: { today_calls: @today_calls } %>
 
-<%= render partial: "/delivery_calls/form", locals: { delivery_call: @delivery_call } %>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div class="well">
+			<h3>Pedidos de hoy</h3>
+			<%= render partial: "today_calls", locals: { today_calls: @today_calls } %>
+		</div>
+	</div>
+	<div class="span6">
+		<div class="well">
+			<h3>Crear pedido</h3>
+			<%= render partial: "/delivery_calls/form", locals: { delivery_call: @delivery_call } %>			
+		</div>
+	</div>
+</div>
+

@@ -1,1 +1,17 @@
-Hola! Partial!
+<table class="table table-striped today-calls">
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <th>Delivery</th>
+      <th>Cantidad de Pedidos</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% today_calls.each do |delivery_call| %>
+      <tr class="delivery-call">
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

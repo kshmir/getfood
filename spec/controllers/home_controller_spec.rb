@@ -15,11 +15,13 @@ describe HomeController do
 		delivery = create_example_delivery!
 		5.times do 
 			menu = DeliveryCall.new delivery_time: DateTime.now, calling_user: @user
+			menu.delivery = delivery
 			menu.delivery_requests << DeliveryRequest.new(user: @user, menus: delivery.menus)
 			menu.save
 		end
 		1.times do 
 			menu = DeliveryCall.new delivery_time: (DateTime.now + 1.day), calling_user: @user
+			menu.delivery = delivery
 			menu.delivery_requests << DeliveryRequest.new(user: @user, menus: delivery.menus)
 			menu.save
 		end

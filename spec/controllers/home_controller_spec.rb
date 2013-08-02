@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe HomeController do
 	before :each do 
-		create_example_user!  
+		create_example_user! 
 	end
 
 	it "Should list a table with the deliveries and a form to create a new one" do

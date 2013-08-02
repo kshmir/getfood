@@ -1,0 +1,42 @@
+<%- model_class = DeliveryCall -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:delivery_time) %></th>
+      <th><%= model_class.human_attribute_name(:delivery_id) %></th>
+      <th><%= model_class.human_attribute_name(:calling_user_id) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @delivery_calls.each do |delivery_call| %>
+      <tr>
+        <td><%= link_to delivery_call.id, delivery_call_path(delivery_call) %></td>
+        <td><%= delivery_call.delivery_time %></td>
+        <td><%= delivery_call.delivery_id %></td>
+        <td><%= delivery_call.calling_user_id %></td>
+        <td><%= delivery_call.status %></td>
+        <td><%=l delivery_call.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_delivery_call_path(delivery_call), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      delivery_call_path(delivery_call),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_delivery_call_path,
+            :class => 'btn btn-primary' %>

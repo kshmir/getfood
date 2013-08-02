@@ -31,7 +31,8 @@ gem 'mini_magick'
 gem 'carrierwave'
 
 # form builders
-gem 'twitter_bootstrap_form_for'
+gem 'formtastic'
+gem 'formtastic-bootstrap'
 gem 'cocoon'
 
 #ui

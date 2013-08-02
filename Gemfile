@@ -42,7 +42,8 @@ gem "twitter-bootstrap-rails"
 
 # search and pagination
 gem 'ransack'          
-gem 'kaminari'          
+gem 'kaminari'       
+gem 'zeus'   
 
 group :development, :test do
 	# ERD tool

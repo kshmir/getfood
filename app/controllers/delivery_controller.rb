@@ -16,7 +16,7 @@ class DeliveryController < ApplicationController
 	end
 
 	def create
-		@delivery = User.new(params[:delivery])
+		@delivery = Delivery.new(params[:delivery])
 		if @delivery.save
 		  flash[:success] = "Delivery successfully created"
 		  redirect_to @delivery
@@ -39,10 +39,10 @@ class DeliveryController < ApplicationController
 	def destroy
 		if @delivery.destroy
 			flash[:success] = "Delivery was successfully deleted"
-			redirect_to @deliverys_url
+			redirect_to delivery_index_path
 		else
 			flash[:error] = "Something went wrong"
-			redirect_to @deliverys_url
+			redirect_to delivery_index_path
 		end
 	end
 

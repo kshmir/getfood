@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+
 describe DeliveryCall do
 	it "Should not allow to create an DeliveryCall" do
 		expect { DeliveryCall.create! }.to raise_error
@@ -23,7 +24,7 @@ describe DeliveryCall do
 	it "Should NOT allow to create DeliveryCall with employees from different companies" do
 		delivery = create_example_delivery!
 		u = create_example_user!
-		u2 = create_example_user_with_company!
+		u2 = create_example_user_with_some_company!
 		menu = DeliveryCall.new delivery_time: DateTime.now, calling_user: u
 		menu.delivery_requests << DeliveryRequest.new(user: u2, menus: delivery.menus)
 		menu.save.should_not == true

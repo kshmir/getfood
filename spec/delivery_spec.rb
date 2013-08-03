@@ -1,32 +1,32 @@
 require 'spec_helper'
 
 describe Delivery do
-    it "Should not allow to create an empty delivery" do
-        expect { Delivery.create! }.to raise_error
+    context "when not valid" do
+        it { expect { Delivery.create! }.to raise_error }
+    end
+    context "when two users are the same" do 
+        it "should not save the second" do
+            delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
+            delivery.save.should == true
+            delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
+            delivery.save.should == false 
+        end
     end
 
-  it "Should not allow to create deliveries with same name" do
-    delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
-    delivery.save.should == true
-    delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
-    delivery.save.should == false
-  end
-
-    it "Should have menues" do
-        delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
-        5.times do |i|
-            delivery.menus << Menu.create(description: "Comida #{i}", price: (i * i))
+    context "having a valid delivery" do
+        let :delivery do
+            delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
+            5.times do |i|
+                delivery.menus << Menu.create(description: "Comida #{i}", price: (i * i))
+            end
+            delivery
         end
-        delivery.save.should == true
-    end
-
-    it "Should destroy all menues after deletion" do
-        delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
-        5.times do |i|
-            delivery.menus << Menu.create(description: "Comida #{i}", price: (i * i))
+        it "should be saved" do
+            delivery.save.should == true
         end
-        delivery.save.should == true
-        delivery.destroy
-        Menu.count.should == 0
+        it "should destroy all menues after deletion" do
+            delivery.destroy
+            Menu.count.should == 0
+        end
     end
 end

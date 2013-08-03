@@ -14,6 +14,7 @@ class DeliveryCall < ActiveRecord::Base
   validates :delivery_time, presence: true
   validates :delivery_requests, :length => { :minimum => 1 }
   validates :calling_user_id, presence: true, :if => lambda { |x| x.status == 'pending' }
+  validates :delivery, presence: true
 
   validate :all_users_have_same_company
 

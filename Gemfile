@@ -73,6 +73,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'terminal-notifier-guard' 
   gem 'libnotify'
+  gem 'fuubar'
 end
 
 # Gems used only for assets and not required

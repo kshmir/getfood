@@ -1,11 +1,31 @@
 require 'zeus/rails'
 
 class CustomPlan < Zeus::Rails
+  def test
+    require 'simplecov'
+    SimpleCov.start 'rails' do
+		  add_filter '/spec/'
+		  add_filter '/test/'
+		  add_filter '/config/'
 
-  # def my_custom_command
-  #  # see https://github.com/burke/zeus/blob/master/docs/ruby/modifying.md
-  # end
+		  add_group 'Controllers', 'app/controllers'
+		  add_group 'Models', 'app/models'
+		  add_group 'Libraries', 'lib'
+		end
+    # require all ruby files
+    Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 
+    # run the tests
+    super
+  end
+end
+ 
+Zeus.plan = CustomPlan.new
+Zeus.plan = CustomPlan.new
+
+def notifier
+   return (`uname`).match("Darwin") ? "terminal_notifier" : "libnotify" 
 end
 
-Zeus.plan = CustomPlan.new
+ENV['GUARD_NOTIFY'] = 'true'
+ENV['GUARD_NOTIFICATIONS'] = "---\n- :name: :#{notifier}\n  :options: {}\n"

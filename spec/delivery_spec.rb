@@ -11,6 +11,7 @@ describe Delivery do
             delivery = Delivery.create name: "La farolita", phone: "123456789", delivery_type: "Rotiseria"
             delivery.save.should == false 
         end
+        
     end
 
     context "having a valid delivery" do

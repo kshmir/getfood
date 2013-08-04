@@ -1,72 +1,18 @@
 require 'rubygems'
-require 'spork'
-#uncomment the following line to use spork with the debugger
-#require 'spork/ext/ruby-debug'
+require 'simplecov'
 
-Spork.prefork do
-  ENV["RAILS_ENV"] ||= 'test'  
-  require File.expand_path("../../config/environment", __FILE__)  
-  require 'rspec/rails'  
-  require 'capybara/rspec'  
-  require 'capybara/rails'
-  require "#{Rails.root}/spec/helpers.rb"
-
-  Capybara.default_host = "localhost"
-  Capybara.app_host = "http://localhost:3000"
-
-  Dir[Rails.root.join("*.rb")].each {|f| require f}  
-
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}  
-
-  full_names = Dir["#{Rails.root}/app/helpers/*.rb"]
-  full_names.collect do |full_name|
-    include Object.const_get(File.basename(full_name,'.rb').camelize)
-  end
-  
-  RSpec.configure do |config|  
-    config.mock_with :rspec  
-    config.use_transactional_fixtures = true  
-    config.include Helpers
-  end  
+# this part is optional, but it gets SimpleCov working when running
+# specs without zeus (as long as zeus is not running)
+def zeus_running?
+  File.exists? '.zeus.sock'
+end
+ 
+if !zeus_running?
+  require 'simplecov'
+  SimpleCov.start
 end
 
 
-
-Spork.each_run do
-
-  class ActiveRecord::Base
-    mattr_accessor :shared_connection
-    @@shared_connection = nil
-
-    def self.connection
-      @@shared_connection || retrieve_connection
-    end
-  end
-
-  # Forces all threads to share the same connection. This works on
-  # Capybara because it starts the web server in a thread.
-  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
-  # This code will be run each time you run your specs.
-  load "#{Rails.root}/config/routes.rb" 
-  FactoryGirl.reload
-  # reload all the models
-  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
-    load model
-  end
-
-  
-  RSpec.configure do |config|
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-      DatabaseCleaner.clean_with(:truncation)
-    end 
-    config.render_views
-    config.include Capybara::DSL
-  end
-  ActiveSupport::Dependencies.clear
-  ActiveRecord::Base.instantiate_observers
-  FactoryGirl.reload
-end
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
 # block.
@@ -103,7 +49,8 @@ end
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+
+require "#{Rails.root}/spec/helpers.rb"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -112,11 +59,21 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
 
   config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-      DatabaseCleaner.clean_with(:truncation)
-    end 
-    config.render_views
-    config.include Capybara::DSL
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+    class ActiveRecord::Base
+      mattr_accessor :shared_connection
+      @@shared_connection = nil
+
+      def self.connection
+        @@shared_connection || retrieve_connection
+      end
+    end
+  end 
+  config.render_views
+  config.include Capybara::DSL
+
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

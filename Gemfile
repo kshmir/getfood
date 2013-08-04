@@ -52,8 +52,10 @@ group :development, :test do
 	# Testing utils
   gem 'factory_girl_rails'
   gem 'capybara', '2.0.2'
-  gem 'rspec', '2.14.0'
+  gem 'rspec'
+  gem 'fuubar'
   gem 'database_cleaner'
+  gem "parallel_tests"
 
   # Debugging utils
   gem 'pry'
@@ -61,19 +63,23 @@ group :development, :test do
   gem 'pry-debugger'
   gem 'pry-stack_explorer'
   gem 'awesome_print'                
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
 
   # Testing automatization
   gem 'guard'
-	gem 'rspec-rails'
   gem 'guard-rspec'
+  gem 'guard-rails'
+  gem 'guard-zeus'
   gem 'guard-livereload'
-  gem 'spork', '~> 1.0rc'
-  gem 'guard-spork'
+  
+  gem 'rspec-rails'
+  gem 'simplecov'
+
+  gem 'rails_best_practices'
+  
   gem 'terminal-notifier-guard' 
-  gem 'libnotify'
-  gem 'fuubar'
+  gem 'libnotify' unless `uname`.match "Darwin"
 end
 
 # Gems used only for assets and not required

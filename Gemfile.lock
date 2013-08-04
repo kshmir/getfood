@@ -31,9 +31,6 @@ GEM
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.1)
-    better_errors (0.9.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
@@ -61,6 +58,8 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     choice (0.1.6)
     cocoon (1.2.0)
+    code_analyzer (0.3.2)
+      sexp_processor
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -69,6 +68,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    colored (1.2)
     columnize (0.3.6)
     commonjs (0.2.6)
     daemons (1.1.9)
@@ -122,13 +122,14 @@ GEM
       em-websocket (>= 0.5.0)
       guard (>= 1.8.0)
       multi_json (~> 1.7)
+    guard-rails (0.4.7)
+      guard (>= 0.2.2)
     guard-rspec (3.0.0)
       guard (>= 1.8)
       rspec (~> 2.13)
-    guard-spork (1.5.1)
-      childprocess (>= 0.2.3)
-      guard (>= 1.1)
-      spork (>= 0.8.4)
+    guard-zeus (0.0.1)
+      guard
+      zeus
     highline (1.6.19)
     hike (1.2.3)
     hobo_fields (2.0.1)
@@ -150,8 +151,6 @@ GEM
     less-rails (2.3.3)
       actionpack (>= 3.1)
       less (~> 2.3.1)
-    libnotify (0.8.1)
-      ffi (>= 1.0.11)
     libv8 (3.11.8.17)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
@@ -177,6 +176,9 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    parallel (0.7.1)
+    parallel_tests (0.15.0)
+      parallel
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -212,6 +214,15 @@ GEM
       activesupport (>= 3.0)
       choice (~> 0.1.6)
       ruby-graphviz (~> 1.0.4)
+    rails_best_practices (1.14.0)
+      activesupport
+      awesome_print
+      code_analyzer
+      colored
+      erubis
+      i18n
+      require_all
+      ruby-progressbar
     railties (3.2.14)
       actionpack (= 3.2.14)
       activesupport (= 3.2.14)
@@ -232,6 +243,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    require_all (1.2.1)
     rspec (2.14.0)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -263,8 +275,12 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    sexp_processor (4.2.1)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.6)
-    spork (1.0.0rc3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -307,8 +323,6 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  better_errors
-  binding_of_caller
   cancan
   capistrano
   capistrano-multiconfig
@@ -325,26 +339,28 @@ DEPENDENCIES
   fuubar
   guard
   guard-livereload
+  guard-rails
   guard-rspec
-  guard-spork
+  guard-zeus
   hobo_fields
   jquery-rails
   kaminari
   less-rails
-  libnotify
   mini_magick
+  parallel_tests
   pry
   pry-debugger
   pry-rails
   pry-stack_explorer
   rails (= 3.2.14)
   rails-erd
+  rails_best_practices
   ransack
-  rspec (= 2.14.0)
+  rspec
   rspec-rails
   rvm-capistrano
   sass-rails (~> 3.2.3)
-  spork (~> 1.0rc)
+  simplecov
   sqlite3
   terminal-notifier-guard
   therubyracer

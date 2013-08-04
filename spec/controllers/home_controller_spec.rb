@@ -25,6 +25,7 @@ describe HomeController do
 			menu.delivery_requests << DeliveryRequest.new(user: @user, menus: delivery.menus)
 			menu.save
 		end
+		
 		sign_in_example_user!
 		all(".delivery-call").count.should == DeliveryCall.today_calls.count
 	end

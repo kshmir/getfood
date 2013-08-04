@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'simplecov'
+require 'capybara/poltergeist'
+
 
 # this part is optional, but it gets SimpleCov working when running
 # specs without zeus (as long as zeus is not running)
@@ -50,6 +52,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 
+require "#{Rails.root}/spec/real_browser.rb"
 require "#{Rails.root}/spec/helpers.rb"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -58,18 +61,20 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   
-  # config.before(:suite) do
-  #   DatabaseCleaner.strategy = :transaction
-  #   DatabaseCleaner.clean_with(:truncation)
-  # end
+  Capybara.default_host = "localhost"
+  Capybara.app_host = "http://localhost:3000"
 
-  # config.before(:each) do
-  #   DatabaseCleaner.start
-  # end
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
 
-  # config.after(:each) do
-  #   DatabaseCleaner.clean
-  # end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
   config.render_views
   config.include Capybara::DSL
 
@@ -88,7 +93,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

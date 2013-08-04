@@ -22,7 +22,6 @@ class HoboMigration1 < ActiveRecord::Migration
     create_table :deliveries do |t|
       t.string :name
       t.string :phone
-      t.string :type
     end
 
     create_table :delivery_calls do |t|

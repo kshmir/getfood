@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130802150220) do
   create_table "deliveries", :force => true do |t|
     t.string "name"
     t.string "phone"
+    t.string "type"
     t.string "delivery_type"
   end
 

@@ -34,3 +34,9 @@ guard 'rails', zeus: true, daemon: true do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
 end
+
+# For compatibility reasons, a testing server cannot run with zeus
+guard 'rails', zeus: false, daemon: true, environment: "test", port: 3001 do
+  watch('Gemfile.lock')
+  watch(%r{^(config|lib)/.*})
+end

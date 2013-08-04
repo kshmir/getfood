@@ -8,6 +8,7 @@ gem 'thin'
 
 # database drivers
 gem 'sqlite3'
+gem 'pg'
 
 # authentication
 gem 'devise'
@@ -43,41 +44,63 @@ gem "twitter-bootstrap-rails"
 # search and pagination
 gem 'ransack'          
 gem 'kaminari'       
-gem 'zeus'   
+
+group :development do
+  # ERD tool                
+  gem 'rails-erd'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  gem 'rails_best_practices'
+end
+
+group :test do
+  # Main testing framework
+  gem 'rspec'
+  gem 'rspec-rails'
+
+  # Helpers for testing views/controllers
+  gem 'capybara', '2.0.2'
+
+  # Factories for generating example data
+  gem 'factory_girl_rails'
+
+  # Percentage loader for tests
+  gem 'fuubar'
+
+  # Code Coverage analysis
+  gem 'simplecov'
+
+  # PhantomJS
+  gem 'poltergeist'
+
+  # Allows to clean database on each test
+  gem 'database_cleaner'
+end
 
 group :development, :test do
-	# ERD tool
-  gem 'rails-erd'                   
-
-	# Testing utils
-  gem 'factory_girl_rails'
-  gem 'capybara', '2.0.2'
-  gem 'rspec'
-  gem 'fuubar'
-  gem 'database_cleaner'
-  gem "parallel_tests"
+  # Rails accelerator
+  gem 'zeus'
 
   # Debugging utils
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'pry-stack_explorer'
-  gem 'awesome_print'                
-  # gem 'better_errors'
-  # gem 'binding_of_caller'
+  gem 'awesome_print' 
 
-  # Testing automatization
+  # Environment automatization
   gem 'guard'
+
+  # Guard plugins
   gem 'guard-rspec'
   gem 'guard-rails'
   gem 'guard-zeus'
   gem 'guard-livereload'
   
-  gem 'rspec-rails'
-  gem 'simplecov'
 
-  gem 'rails_best_practices'
-  
+  # Guard notifiers
   gem 'terminal-notifier-guard' 
   gem 'libnotify' unless `uname`.match "Darwin"
 end
@@ -89,19 +112,3 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# 
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'

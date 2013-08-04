@@ -31,6 +31,9 @@ GEM
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.1)
+    better_errors (0.9.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
@@ -99,6 +102,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faye-websocket (0.4.7)
+      eventmachine (>= 0.12.0)
     ffi (1.9.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -176,9 +181,11 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
-    parallel (0.7.1)
-    parallel_tests (0.15.0)
-      parallel
+    pg (0.16.0)
+    poltergeist (1.1.2)
+      capybara (~> 2.0.1)
+      faye-websocket (~> 0.4.4)
+      http_parser.rb (~> 0.5.3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -323,6 +330,8 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  better_errors
+  binding_of_caller
   cancan
   capistrano
   capistrano-multiconfig
@@ -347,7 +356,8 @@ DEPENDENCIES
   kaminari
   less-rails
   mini_magick
-  parallel_tests
+  pg
+  poltergeist
   pry
   pry-debugger
   pry-rails

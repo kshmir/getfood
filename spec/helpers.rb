@@ -5,7 +5,7 @@ module Helpers
 		  fill_in 'user[email]', :with => username
 		  fill_in 'user[password]', :with => password
 		end
-		click_button('Sign in')
+		find('#new_user input[type=submit]').click
 		visit root_path
 	end
 

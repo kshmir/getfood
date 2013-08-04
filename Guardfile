@@ -2,8 +2,7 @@ guard :rspec,
   spec_paths: [ "spec/" ], 
   all_after_pass: true, 
   zeus: true, 
-  paralells_tests: true,
-  # :run_all => { :cli => "--color --format Fuubar" },
+  cli: "--color --format nested",
   :run_all => { :cli => "--color --format Fuubar" } do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }

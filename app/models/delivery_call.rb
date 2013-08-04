@@ -4,7 +4,7 @@ class DeliveryCall < ActiveRecord::Base
     delivery_time :datetime
     status        :string, default: 'started' # statuses: 'started', 'pending', 'complete'
   end
-  attr_accessible :delivery_time, :calling_user
+  attr_accessible :delivery_time, :calling_user, :delivery
 
   belongs_to :delivery
   has_many :delivery_requests

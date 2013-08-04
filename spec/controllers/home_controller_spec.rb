@@ -6,6 +6,7 @@ describe HomeController do
 	end
 
 	it "Should list a table with the deliveries and a form to create a new one" do
+		User.count.should_not be 0
 		sign_in_example_user!
 		page.has_selector?('.today-calls').should == true
 	end
@@ -25,7 +26,7 @@ describe HomeController do
 			menu.delivery_requests << DeliveryRequest.new(user: @user, menus: delivery.menus)
 			menu.save
 		end
-		
+
 		sign_in_example_user!
 		all(".delivery-call").count.should == DeliveryCall.today_calls.count
 	end

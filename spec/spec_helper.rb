@@ -57,19 +57,19 @@ require "#{Rails.root}/spec/helpers.rb"
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
+  
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :transaction
+  #   DatabaseCleaner.clean_with(:truncation)
+  # end
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-    class ActiveRecord::Base
-      mattr_accessor :shared_connection
-      @@shared_connection = nil
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
 
-      def self.connection
-        @@shared_connection || retrieve_connection
-      end
-    end
-  end 
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
   config.render_views
   config.include Capybara::DSL
 

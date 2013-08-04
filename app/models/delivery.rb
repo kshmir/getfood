@@ -12,4 +12,7 @@ class Delivery < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :phone, presence: true
+  def to_s
+    name
+  end
 end

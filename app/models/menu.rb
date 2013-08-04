@@ -11,4 +11,7 @@ class Menu < ActiveRecord::Base
   validates :price, presence: true
   validates :description, presence: true
   validates :delivery, presence: true
+  def to_s
+    description
+  end
 end

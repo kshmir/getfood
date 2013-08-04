@@ -5,7 +5,7 @@ class DeliveryCall < ActiveRecord::Base
     status        :string, default: 'started' # statuses: 'started', 'pending', 'complete'
   end
   attr_accessible :delivery_time, :calling_user, :delivery
-
+  
   belongs_to :delivery
   has_many :delivery_requests
   has_many :users, through: :delivery_requests
@@ -23,8 +23,8 @@ class DeliveryCall < ActiveRecord::Base
   }
 
   def all_users_have_same_company
-    users = delivery_requests.map(&:user)
-    users << calling_user unless calling_user.nil?
-    errors.add(:users, I18n.t("delivery_call_form.all_users_should_have_same_company")) unless users.all? { |x| users.first.company == x.company }
+    delivery_users = delivery_requests.map(&:user)
+    delivery_users << calling_user unless calling_user.nil?
+    errors.add(:users, I18n.t("delivery_call_form.all_users_should_have_same_company")) unless delivery_users.all? { |x| delivery_users.first.company == x.company }
   end
 end

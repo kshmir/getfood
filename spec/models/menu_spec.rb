@@ -19,9 +19,4 @@ describe Menu do
 		menu.save.should == false
 	end
 
-	it "to_s should return menu's description" do
-		menu = Menu.create price: 1.0, description: "lalala"
-		menu.to_s.should == menu.description
-	end
-
 end

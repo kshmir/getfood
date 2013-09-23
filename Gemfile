@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # web application frameworks
 gem 'rails', '3.2.14'
 
+#?
+gem 'inherited_resources'
+
 # web server
 gem 'thin'
 

@@ -3,8 +3,9 @@ class DeliveryCall < ActiveRecord::Base
   fields do
     delivery_time :datetime
     status        :string, default: 'started' # statuses: 'started', 'pending', 'complete'
+    timestamps
   end
-  attr_accessible :delivery_time, :calling_user, :delivery
+  attr_accessible :delivery_requests_attributes, :delivery_time, :calling_user, :delivery, :delivery_id
   
   belongs_to :delivery
   has_many :delivery_requests
@@ -16,12 +17,18 @@ class DeliveryCall < ActiveRecord::Base
   validates :calling_user_id, presence: true, :if => lambda { |x| x.status == 'pending' }
   validates :delivery, presence: true
 
+
   validate :all_users_have_same_company
+  accepts_nested_attributes_for :delivery_requests
 
   scope :today_calls, lambda {
     where("delivery_time >= ? AND delivery_time < ?", Date.today, Date.tomorrow)
   }
 
+  before_validation(on: :create) do
+    self.delivery = self.delivery_requests.first.menus.first.delivery rescue nil
+  end
+  
   def all_users_have_same_company
     delivery_users = delivery_requests.map(&:user)
     delivery_users << calling_user unless calling_user.nil?

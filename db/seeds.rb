@@ -10,3 +10,6 @@ user.save!
 
 user = User.new(email:"cris@alu.itba.edu.ar", password:"12345678")
 user.save!
+
+user = User.new(email:"dbkazarian@gmail.com", password:"12345678")
+user.save!

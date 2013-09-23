@@ -1,13 +1,17 @@
 <tr class="delivery-call" id="delivery-call-<%=item.id%>">
 	<td>
-		<%= item.delivery_time %>
+		<%= "Hoy a las #{item.delivery_time.strftime("%H:%M")}" %>
 	</td>
 	<td>
 		<%= item.delivery.name %>
 	</td>
 	<td>
-	
+		<%= item.delivery_requests.length %>
 	</td>
+	<td>
+		<%= link_to t('.show', :default => t("helpers.show")) , delivery_call_path(item), :class=>'btn'%>
+	</td>
+	
 	<td>
 		
 	</td>

@@ -24,4 +24,9 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :delivery_requests
   has_many :delivery_calls, through: :delivery_requests
+
+  def to_s
+    email
+  end
+  
 end

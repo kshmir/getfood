@@ -2,11 +2,17 @@
   <%= f.inputs do %>
     <%= f.input :delivery_time, as: :select, collection:@times  %>
 <!--     <%= f.input :status %> -->
-    <%= f.input :delivery, as: :select, collection:@menus %>
-    <!-- <%= f.input :calling_user %> -->
+    <%= f.fields_for :delivery_requests do |builder|%>
+      <%= builder.input :menu_ids, as: :select, 
+      collection: option_groups_from_collection_for_select(Delivery.all, :menus, :name, :id, :description) , label: DeliveryRequest.human_attribute_name(:menus),  input_html: { class: 'chosen-select'} %> 
+     <%= builder.input :user_id, as: :hidden, input_html: { value: current_user.id }%> 
+    <% end %>
+
   <% end %>
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
   <% end %>
+
 <% end %>
+

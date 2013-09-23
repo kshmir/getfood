@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require chosen.jquery
+//= require chosen.jquery.min
+//= require chosen.proto
+//= require chosen.proto.min
 //= require twitter/bootstrap
 //= require_tree .
+
+
+$(".chosen-select").chosen();

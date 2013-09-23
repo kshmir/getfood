@@ -4,7 +4,8 @@ class Delivery < ActiveRecord::Base
     name  :string
     phone :string
     delivery_type  :string
-  end
+  end  
+
   attr_accessible :name, :phone, :delivery_type
 
   has_many :menus, dependent: :destroy

@@ -10,6 +10,8 @@
   <tbody>
     <% today_calls.each do |item| %>
       <%= render partial: '/delivery_calls/table_item', locals: { item: item } %>
+      
+    
     <% end %>
   </tbody>
 </table>

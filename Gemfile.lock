@@ -135,6 +135,9 @@ GEM
     guard-zeus (0.0.1)
       guard
       zeus
+    has_scope (0.6.0.rc)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     highline (1.6.19)
     hike (1.2.3)
     hobo_fields (2.0.1)
@@ -143,6 +146,9 @@ GEM
       rails (~> 3.2.0)
     http_parser.rb (0.5.3)
     i18n (0.6.4)
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -156,6 +162,8 @@ GEM
     less-rails (2.3.3)
       actionpack (>= 3.1)
       less (~> 2.3.1)
+    libnotify (0.8.2)
+      ffi (>= 1.0.11)
     libv8 (3.11.8.17)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
@@ -251,6 +259,8 @@ GEM
       json (~> 1.4)
     ref (1.0.5)
     require_all (1.2.1)
+    responders (1.0.0.rc)
+      railties (>= 3.2, < 5)
     rspec (2.14.0)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -352,9 +362,11 @@ DEPENDENCIES
   guard-rspec
   guard-zeus
   hobo_fields
+  inherited_resources
   jquery-rails
   kaminari
   less-rails
+  libnotify
   mini_magick
   pg
   poltergeist

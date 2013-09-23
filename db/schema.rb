@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130802150220) do
+ActiveRecord::Schema.define(:version => 20130917165631) do
 
   create_table "companies", :force => true do |t|
     t.string "name"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20130802150220) do
   create_table "deliveries", :force => true do |t|
     t.string "name"
     t.string "phone"
-    t.string "type"
     t.string "delivery_type"
   end
 
@@ -29,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20130802150220) do
     t.integer  "delivery_id"
     t.integer  "calling_user_id"
     t.string   "status",          :default => "started"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "delivery_calls", ["calling_user_id"], :name => "index_delivery_calls_on_calling_user_id"

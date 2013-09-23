@@ -46,4 +46,11 @@ module Helpers
 		delivery.save
 		delivery
 	end
+
+	def create_example_delivery_call! user=create_example_user!, delivery=create_example_delivery!
+		delivery_call = DeliveryCall.new delivery_time: DateTime.now, calling_user: user, delivery: delivery
+		delivery_call.delivery_requests << DeliveryRequest.new(user: user, menus: delivery.menus)
+		delivery_call.save
+		delivery_call
+	end
 end

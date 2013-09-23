@@ -11,8 +11,9 @@
  *= require_self
  *= require_tree .
  *= require formtastic-bootstrap 
+ *= require chosen
+ *= requrie chosen_min
  */
-
  .main-content {
  	margin-top: 60px;
  }
